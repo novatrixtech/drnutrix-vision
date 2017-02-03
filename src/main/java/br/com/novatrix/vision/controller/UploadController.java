@@ -58,6 +58,10 @@ public class UploadController {
                     results.add(new Process(Type.ERROR, error.getDescription()));
                     continue;
                 }
+                if (image.getClassifiers().isEmpty()) {
+                    results.add(new Process(Type.ERROR, "could not classify the image"));
+                    continue;
+                }
                 for (VisualClassifier classifier : image.getClassifiers()) {
                     if (classifier.getId().equals("foods_347689306")) {
                         VisualClassifier.VisualClass validClass = null;
